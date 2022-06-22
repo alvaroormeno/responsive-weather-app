@@ -66,7 +66,6 @@ function TempDetails() {
             <p className='font-light'>
                 Low: <span className='font-medium ml-1'>30°</span>
             </p>
-            
         </div>
 
     </div>
