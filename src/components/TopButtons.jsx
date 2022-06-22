@@ -17,11 +17,11 @@ function TopButtons() {
             title: 'Tokyo'
         },
         {
-            id:1,
+            id:4,
             title: 'New York'
         },
         {
-            id:1,
+            id:5,
             title: 'Paris'
         },
     ]
