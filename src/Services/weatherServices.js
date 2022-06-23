@@ -8,6 +8,9 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 // - we will use this function to call different API,s
 // - searchParams is an object which we will automatically convert into a QUERY...
 // everything after  ? is a query
+
+// FUNCTION to call/get weather data from API.
+///////////////////////////////////////////////
 const getWeatherData = (infoType, searchParams) => {
 
     const url = new URL(BASE_URL + '/' + infoType);
@@ -17,7 +20,10 @@ const getWeatherData = (infoType, searchParams) => {
 
     return fetch(url)
         .then((res) => res.json()) 
-}
+};
+//- NOTE: This function reveives two parameters, infotype and searchParams from the getFormattedWeatherData
+//  function. Infotype is either "weather" or "onecall" which is used by the API for different calls.
+//  SearchParams 
 
 
 
@@ -61,7 +67,7 @@ const formatForecastWeather = (data) => {
     
     daily = daily.slice(1, 6).map((d) => {
         return {
-            title: formatToLocalTime(d.dt, timezone, 'ccc'),
+            title: formatToLocalTime(d.dt, timezone),
             temp: d.temp.day,
             icon: d.weather[0].icon
         }
@@ -69,7 +75,7 @@ const formatForecastWeather = (data) => {
 
     hourly = hourly.slice(1, 6).map((d) => {
         return {
-            title: formatToLocalTime(d.dt, timezone, 'hh:mm a'),
+            title: formatToLocalTime(d.dt, timezone),
             temp: d.temp.day,
             icon: d.weather[0].icon
         }
@@ -95,11 +101,19 @@ const getFormattedWeatherData = async (searchParams) => {
     return {...formattedCurrentWeather, ...formattedForecastWeather}
 }
 
+
+// FUNCTION to format the received API local time to readable format.
+/////////////////////////////////////////////////////////////////////
 const formatToLocalTime = (
     secs, 
     zone, 
     format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
+// NOTE: This function has 3 parameters: secs, zone and format. Format is declared by us as a string
+//  which contains the format we want to show in the app by using LUXON format. Secs and Zone are
+//  received from the FormatForecastWeather function title: ( formatToLocalTime(d.dt, timezone) ),
+//  it is actually passed as d.dt and timezone but we change it names to secs and zone in this function.
+//  Then, the function returns the fomatted time we want by using DateTime which is a LUXON data structure.     
 
 
 const iconUrlFromCode = (code) => {

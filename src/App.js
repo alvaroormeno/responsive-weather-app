@@ -16,7 +16,7 @@ function App() {
 
   // REACT USESTATE HOOKS
   // useState for initial query, what city shows up when loading app
-  const [query, setQuery] = useState({q: 'berlin'})
+  const [query, setQuery] = useState({q: 'lima'})
   // useState for initial unit, C° or F°
   const [units, setUnits] = useState('metric')
   //useState for weather, when we fetch weather we will store it in this state
@@ -25,16 +25,19 @@ function App() {
   useEffect(() => {
 
     const fetchWeather = async () => {
-      // Using spreadOperator (...) to copy all query object
-      const weatherData = await getFormattedWeatherData({...query, units}).then(
-        (data) => {
-          setWeather(data);
-        }
+      await getFormattedWeatherData({
+        // Using spreadOperator (...) to copy all query object
+        ...query, 
+        units
+        }).then((data) => {setWeather(data);}
       );
-      
     };
-
+    //-NOTE: Once useEffect is triggered, it calls the async fetchWeather function which then calls 
+    //  getFormattedWeatherData function with two parameters: query and units. Once getFormattedWeatherData
+    //  delivers its "promise", then by using .then the response value which we call data is passed as a
+    //  parameter to the setWeather function wich is a state for weather.   
     fetchWeather();
+  
   }, [query, units])
   // NOTE: useEffect is a hook that carries a function inside and fires/activates every time the page
   //  renders/reloads. By adding [query, units] we instruct that we want useEffect to run everytime

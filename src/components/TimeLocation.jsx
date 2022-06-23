@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatToLocalTime } from '../Services/weatherServices'
 
 
 
@@ -11,7 +12,7 @@ function TimeLocation({weather: {dt, timezone, name, country}}) {
         <div className='flex items-center justify-center my-6'>
             <p className='text-white text-xl font-extralight'>
                 {/* Tueday, 21 June 2022 | Local time: 12:46 PM */}
-                {`${dt} | ${timezone}`}
+                {formatToLocalTime(dt, timezone)}
             </p>
         </div>
 
