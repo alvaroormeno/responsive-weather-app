@@ -116,9 +116,17 @@ const formatToLocalTime = (
 //  Then, the function returns the fomatted time we want by using DateTime which is a LUXON data structure.     
 
 
-const iconUrlFromCode = (code) => {
-    return `http://openweathermap.org/img/wn/${code}@2x.png`
+
+// FUNCTION to get ICON from API
+////////////////////////////////
+const iconUrlFromCode = (iconCode) => {
+    return `http://openweathermap.org/img/wn/${iconCode}@2x.png`
 }
+//  -NOTE: iconUrlFromCode function returns an icon URL by inserting the iconcode parameter which contains
+// the actual code via template literal into a url string. This iconCode parameter is passed from the
+// <img> src in TempDetails.jsx component where we call the iconUrlFromCode function. 
+
+
 
 export default getFormattedWeatherData
 
