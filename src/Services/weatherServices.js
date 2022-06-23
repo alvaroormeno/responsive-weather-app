@@ -9,6 +9,8 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 // - searchParams is an object which we will automatically convert into a QUERY...
 // everything after  ? is a query
 
+
+///////////////////////////////////////////////
 // FUNCTION to call/get weather data from API.
 ///////////////////////////////////////////////
 const getWeatherData = (infoType, searchParams) => {
@@ -67,7 +69,7 @@ const formatForecastWeather = (data) => {
     
     daily = daily.slice(1, 6).map((d) => {
         return {
-            title: formatToLocalTime(d.dt, timezone),
+            title: formatToLocalTime(d.dt, timezone, "ccc"),
             temp: d.temp.day,
             icon: d.weather[0].icon
         }
@@ -75,8 +77,8 @@ const formatForecastWeather = (data) => {
 
     hourly = hourly.slice(1, 6).map((d) => {
         return {
-            title: formatToLocalTime(d.dt, timezone),
-            temp: d.temp.day,
+            title: formatToLocalTime(d.dt, timezone, "hh:mm a"),
+            temp: d.temp,
             icon: d.weather[0].icon
         }
     })
@@ -84,6 +86,11 @@ const formatForecastWeather = (data) => {
     return {timezone, daily, hourly};
 }
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FUNCTION to format weather data from 2 different API calls into one single object to be used in APP.JS
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 const getFormattedWeatherData = async (searchParams) => {
     const formattedCurrentWeather = await getWeatherData(
         'weather', 
@@ -97,11 +104,23 @@ const getFormattedWeatherData = async (searchParams) => {
         {lat, lon, exclude: 'current,minutely,alerts', units: searchParams.units} 
     ).then(formatForecastWeather)
     
-    // Using SpreadOperator (...), to copy both objects
+    // Using SpreadOperator (...), to copy both objects and return them as a single object
     return {...formattedCurrentWeather, ...formattedForecastWeather}
 }
+// -NOTE:
+// Step1: getFormattedWeatherData is called in APP.js and is passed search parameters, the query and units
+// Step2: getFormattedWeatherData calls formattedCurrentWeather which fetches API weather data by
+// calling getWeatherData function. .then grabs return value and passes it to formatCurrentWeather function.
+// Step3: We deconstruct formattedCurrentWeather and grab lat and lon parameters to be used in second calling.
+// Step4: getFormattedWeatherData calls formattedForecastWeather which fetches ONECALL API weather data
+// by calling getWeatherData. .then grabs returned value and passes it to formatForecastWeather function.
+// Step5: the return value of getFormattedWeatherData is a single object with the values of both
+// formattedCurrentWeather and formattedForecastWeather functions.
+// Step6: This value is then returned as a promise to APP.JS in fetchWeather function.   
 
 
+
+/////////////////////////////////////////////////////////////////////
 // FUNCTION to format the received API local time to readable format.
 /////////////////////////////////////////////////////////////////////
 const formatToLocalTime = (
@@ -117,6 +136,7 @@ const formatToLocalTime = (
 
 
 
+////////////////////////////////
 // FUNCTION to get ICON from API
 ////////////////////////////////
 const iconUrlFromCode = (iconCode) => {
@@ -131,6 +151,13 @@ const iconUrlFromCode = (iconCode) => {
 export default getFormattedWeatherData
 
 export {formatToLocalTime, iconUrlFromCode}
+
+
+
+
+
+
+
 
 // My API KEY = bde2fddb9d1baf4bcf15398e8a8d6454
 
