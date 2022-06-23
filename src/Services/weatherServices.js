@@ -57,8 +57,25 @@ const formatCurrentWeather = (data) => {
 }
 
 const formatForecastWeather = (data) => {
-    const {timezone, daily, hourly} = data
-    daily = daily.slice(1,6).map()
+    let {timezone, daily, hourly} = data;
+    
+    daily = daily.slice(1, 6).map((d) => {
+        return {
+            title: formatToLocalTime(d.dt, timezone, 'ccc'),
+            temp: d.temp.day,
+            icon: d.weather[0].icon
+        }
+    });
+
+    hourly = hourly.slice(1, 6).map((d) => {
+        return {
+            title: formatToLocalTime(d.dt, timezone, 'hh:mm a'),
+            temp: d.temp.day,
+            icon: d.weather[0].icon
+        }
+    })
+
+    return {timezone, daily, hourly};
 }
 
 const getFormattedWeatherData = async (searchParams) => {
@@ -73,8 +90,9 @@ const getFormattedWeatherData = async (searchParams) => {
         'onecall', 
         {lat, lon, exclude: 'current,minutely,alerts', units: searchParams.units} 
     ).then(formatForecastWeather)
-
-    return formattedCurrentWeather
+    
+    // Using SpreadOperator (...), to copy both objects
+    return {...formattedCurrentWeather, ...formattedForecastWeather}
 }
 
 const formatToLocalTime = (
@@ -83,7 +101,14 @@ const formatToLocalTime = (
     format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
+
+const iconUrlFromCode = (code) => {
+    return `http://openweathermap.org/img/wn/${code}@2x.png`
+}
+
 export default getFormattedWeatherData
+
+export {formatToLocalTime, iconUrlFromCode}
 
 // My API KEY = bde2fddb9d1baf4bcf15398e8a8d6454
 
