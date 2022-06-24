@@ -67,7 +67,7 @@ function App() {
   
 
   return (
-    <div className={`mx-auto max-w-screen-md mt-4  py-5 px-32 bg-gradient-to-br ${formatBackground()} h-fit shadow-xl rounded-lg`}>
+    <div className={`mx-auto max-w-screen-md mt-4  py-5 px-10 md:px-32 bg-gradient-to-br ${formatBackground()} h-fit shadow-xl rounded-lg`}>
       <TopButtons setQuery={setQuery}/>
       <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
 
