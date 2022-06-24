@@ -30,14 +30,14 @@ function Inputs({setQuery, units, setUnits}) {
 
 	
 
-		<div className="flex flex-row justify-center my-6">
-			<div className="flex flex-row w-3/4 items-center justify-center space-x-4">
+		<div className="flex flex-col md:flex-row justify-center my-6 border-4">
+			<div className="flex flex-row md:w-3/4 items-center justify-center space-x-4">
 				<input
 					value={city}
 					onChange={(event) => setCity(event.currentTarget.value) }
 					type="text"
 					placeholder="Search for a city..."
-					className="text-xl font-light p-2 w-full shadow-xl focus:outline-none capitalize placeholder:lowercase "
+					className="text-xl font-light p-2 w-full shadow-xl focus:outline-none capitalize placeholder:lowercase rounded-lg"
 				/>
 				<UilSearch
 					size={25}
