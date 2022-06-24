@@ -22,6 +22,10 @@ function App() {
   //useState for weather, when we fetch weather we will store it in this state
   const [weather, setWeather] = useState(null)
 
+
+
+
+  //// FUNCTION that starts the app once the page reloads
   useEffect(() => {
 
     const fetchWeather = async () => {
@@ -44,10 +48,26 @@ function App() {
   //  there is a change in state of query or units. Therefore, every time we change query or units by
   //  searching a new city/clicking on top links or clicking on C/F button to change units we want to 
   //  fetch new weather via the fetchWeather function inside useEffect
+
+
+
+  // FUNCTION that changes the background color depending on weather
+  const formatBackground = () => {
+    if(!weather) {
+      return 'from-cyan-700 to-blue-700'
+    } else {
+      const threshold = (units === 'metric' ? 20 : 60)
+      if (weather.temp <= threshold) {
+        return 'from-cyan-700 to-blue-700'
+      } else {
+        return 'from-yellow-700 to-orange-700'
+      }
+    }
+  }
   
 
   return (
-    <div className="mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl">
+    <div className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br ${formatBackground()} h-fit shadow-xl`}>
       <TopButtons setQuery={setQuery}/>
       <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
 
