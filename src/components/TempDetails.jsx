@@ -66,7 +66,7 @@ function TempDetails({
 
        
 
-        <div className='flex flex-row items-center justify-between md:justify-center space-x-2  text-white text-sm py-3 border-2 border-green-300'>
+        <div className='flex flex-row items-center justify-between md:justify-center space-x-2  text-white text-sm py-3 '>
             <div className='flex flex-col md:flex-row items-center '>
 
                 <UilSun className="h-[30px] w-[30px] md:mr-1  " />

@@ -28,10 +28,10 @@ function TimeLocation({weather: {dt, timezone, name, country}}) {
     </div>
 
 
-    <div className='flex flex-col items-center border-2 my-6  border-green-500'>
+    <div className='flex flex-col items-center my-6 '>
         
         {/* TIME SECTION */}
-        <div className='flex flex-col items-center space-y-2  border-2 border-black  '>
+        <div className='flex flex-col items-center space-y-2'>
             <p className='text-white text-xl md:text-2xl font-extralight md:font-normal'>
                 {/* Tueday, 21 June 2022 | Local time: 12:46 PM */}
                 {formatToLocalTime(dt, timezone, "cccc, dd LLL yyyy")}

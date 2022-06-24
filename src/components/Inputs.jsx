@@ -77,7 +77,7 @@ function Inputs({setQuery, units, setUnits}) {
 		<div className="flex flex-col items-center t md:flex-row justify-around space-y-4 md:space-y-0">
 
 			{/* COL 1 */}
-			<div className="border-2 border-green-400 flex space-x-4 items-center md:w-3/4">
+			<div className="flex space-x-4 items-center md:w-3/4">
 
 				<input
 					value={city}
@@ -102,7 +102,7 @@ function Inputs({setQuery, units, setUnits}) {
 			
 			
 			{/* COL 2 */}
-			<div className="border-2 border-green-400 flex md:w-1/4 md:justify-center  ">
+			<div className="flex md:w-1/4 md:justify-center  ">
 
 				<button
                     name="metric"
