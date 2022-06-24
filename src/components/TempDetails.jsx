@@ -30,7 +30,7 @@ function TempDetails({
   return (
     <div>
 
-        <div className='flex items-center justify-center py-6 text-xl text-cyan-300'>
+        <div className='flex items-center justify-center md:py-6 text-xl text-cyan-300'>
             <p>{details}</p>
         </div>
 
@@ -61,39 +61,71 @@ function TempDetails({
             </div> 
         </div>
 
-        <div className='flex flex-row items-center justify-center space-x-2 text-white text-sm py-3'>
-            <UilSun/>
-            <p className='font-light'>
-                Rise: 
-                <span className='font-medium ml-1'>
-                    {/* Calling formatToLocalTime and passing 3 params  */}
-                    {formatToLocalTime(sunrise, timezone, "hh:mm a")}
-                </span>
-            </p>
+        
+
+
+       
+
+        <div className='flex flex-row items-center justify-between md:justify-center space-x-2  text-white text-sm py-3 border-2 border-green-300'>
+            <div className='flex flex-col md:flex-row items-center '>
+
+                <UilSun className="h-[30px] w-[30px] md:mr-1  " />
+                <p className='font-light flex flex-col md:flex-row items-center'>
+                    <span>
+                        Rise:
+                    </span>
+                    
+                    <span className='font-medium ml-1'>
+                        {/* Calling formatToLocalTime and passing 3 params  */}
+                        {formatToLocalTime(sunrise, timezone, "hh:mm a")}
+                    </span>
+                </p>
+
+            </div>
+            
             <p className='font-light'>|</p>
 
-            <UilSunset/>
-            <p className='font-light'>
-                Set: 
-                <span className='font-medium ml-1'>
-                {formatToLocalTime(sunset, timezone, "hh:mm a")}
-                </span>
-            </p>
+            <div className='flex flex-col md:flex-row items-center'>
+
+                <UilSunset className="h-[30px] w-[30px] md:mr-1"/>
+                <p className='font-light flex flex-col md:flex-row items-center'>
+                    Set: 
+                    <span className='font-medium ml-1'>
+                    {formatToLocalTime(sunset, timezone, "hh:mm a")}
+                    </span>
+                </p>
+
+            </div>
+
+            
             <p className='font-light'>|</p>
 
-            <UilSun/>
-            <p className='font-light'>
-                High: 
-                <span className='font-medium ml-1'>
-                {`${temp_max.toFixed()}°`}
-                </span>
-            </p>
+            <div className='flex flex-col md:flex-row items-center '>
+
+                <UilSun className="h-[30px] w-[30px] md:mr-1"/>
+                <p className='font-light flex flex-col md:flex-row items-center'>
+                    High: 
+                    <span className='font-medium ml-1'>
+                    {`${temp_max.toFixed()}°`}
+                    </span>
+                </p>
+
+            </div>
+
+            
             <p className='font-light'>|</p>
 
-            <UilSun/>
-            <p className='font-light'>
-                Low: <span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
-            </p>
+
+            <div className='flex flex-col md:flex-row items-center'>
+
+                <UilSun className="h-[30px] w-[30px] md:mr-1"/>
+                <p className='font-light flex flex-col md:flex-row items-center'>
+                    Low: <span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
+                </p>
+
+            </div>
+
+            
         </div>
 
     </div>
