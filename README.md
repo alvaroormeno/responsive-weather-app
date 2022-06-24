@@ -15,7 +15,7 @@
 
 
 ## About The Project
-A complete weather app that uses 2 different API calls to fetch different weather properties.
+A complete mobile responsive weather app that uses 2 different API calls to fetch different weather properties.
 
 ## Features
 - Quick links for top 5 cities.
@@ -53,5 +53,5 @@ A complete weather app that uses 2 different API calls to fetch different weathe
 
 
 ## Screenshots
-![Screenshot 1](public/assets/screenshot1.png)
-![Screenshot 2](public/assets/screenshot2.png)
+![Screenshot 1](src/assets/screenshot-mobile.png)
+![Screenshot 2](src/assets/screenshot1.png)
