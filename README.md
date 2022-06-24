@@ -46,7 +46,10 @@ A complete weather app that uses 2 different API calls to fetch different weathe
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React.js](https://reactjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
-- [Heroicons](https://heroicons.com/)
+- [Unicons](https://iconscout.com/unicons)
+- [Open Weather API](https://openweathermap.org/)
+- [Luxon](https://www.npmjs.com/package/luxon)
+    - Luxon is a library for working with dates and times in JavaScript.
 
 
 ## Screenshots
